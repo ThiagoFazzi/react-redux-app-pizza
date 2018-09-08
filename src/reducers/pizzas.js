@@ -24,10 +24,8 @@ export default (state = initialState, action) => {
     
     case TOTAL_PRICE:
     const stateArrayTotal = {...state}
-    console.log(stateArrayTotal.pizza.total)
-    console.log(action)
-    //stateArrayTotal.pizza.total += action.totalPrice 
-    //return stateArrayTotal
+    stateArrayTotal.pizza.total = action.total 
+    return stateArrayTotal
 
     default:
         return state

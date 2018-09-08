@@ -21,15 +21,9 @@ const updateTotalPrice = total => ({
 
 //Dispatch Actions
 
-export const updatePrice = (base, sauce, toppings) => (dispatch) => {
-  const totalPrice = base.price + sauce.price
-  
-  console.log(base)
-  console.log(sauce)
-  //console.log(base.price)
-
-  console.log(totalPrice)
-  dispatch(updateTotalPrice(totalPrice))
+export const updatePrice = (total) => (dispatch) => {
+  console.log('dispatch',total)
+  dispatch(updateTotalPrice(total))
 }
 
 export const createPizzaBase = (base) => (dispatch) => {

@@ -11,20 +11,23 @@ class MainContainer extends React.PureComponent {
     this.props.loadAllToppings()
   }
 
-
   onChangeBase = (base) => {
-    console.log(base)
     this.props.createPizzaBase(base)
-    console.log(this.props)
-    console.log(this.props.sauce)
-    this.props.updatePrice(this.props.base, this.props.sauce)
+    this.calcTotalPrice(this.props.pizza)
   }
 
   onChangeSauce = (sauce) => {
-    console.log(sauce)
     this.props.createPizzaSauce(sauce)
+    this.calcTotalPrice(this.props.pizza)
   }
 
+  calcTotalPrice = (pizza) => {
+      if(!pizza.base.price) pizza.base.price = 0
+      if(!pizza.sauce.price) pizza.sauce.price = 0
+
+      const pizzaPrice = (pizza.base.price + pizza.sauce.price)
+      this.props.updatePrice(pizzaPrice)
+  }
 
 
   render() {
@@ -62,10 +65,8 @@ class MainContainer extends React.PureComponent {
           )}
         </ul>
 
-        <h1>{this.props.base.price + this.props.sauce.price}</h1>
         <h1>{this.props.price}</h1>
-        <p onChange={() => console.log('hi update price base')}>{this.props.base.name} -  {this.props.base.price}</p>
-        <p onChange={() => this.onUpdatePrice()}>{this.props.sauce.name} - {this.props.sauce.price}</p>
+
       </div>
 
     )
