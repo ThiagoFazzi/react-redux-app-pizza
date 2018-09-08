@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { loadAllBases, loadAllSauces, loadAllToppings } from '../actions/ingredientsAction'
-import { createPizzaBase, createPizzaSauce } from '../actions/pizzaAction'
+import { createPizzaBase, createPizzaSauce, updatePrice } from '../actions/pizzaAction'
 import PizzaCreatorContainer from './PizzaCreatorContainer'
 
 class MainContainer extends React.PureComponent {
@@ -15,6 +15,9 @@ class MainContainer extends React.PureComponent {
   onChangeBase = (base) => {
     console.log(base)
     this.props.createPizzaBase(base)
+    console.log(this.props)
+    console.log(this.props.sauce)
+    this.props.updatePrice(this.props.base, this.props.sauce)
   }
 
   onChangeSauce = (sauce) => {
@@ -60,8 +63,9 @@ class MainContainer extends React.PureComponent {
         </ul>
 
         <h1>{this.props.base.price + this.props.sauce.price}</h1>
-        <h1>{this.props.base.name}</h1>
-        <h1>{this.props.sauce.name}</h1>
+        <h1>{this.props.price}</h1>
+        <p onChange={() => console.log('hi update price base')}>{this.props.base.name} -  {this.props.base.price}</p>
+        <p onChange={() => this.onUpdatePrice()}>{this.props.sauce.name} - {this.props.sauce.price}</p>
       </div>
 
     )
@@ -75,6 +79,7 @@ const mapStateToProps = state => ({
   pizza: state.pizzas.pizza,
   base: state.pizzas.pizza.base,
   sauce: state.pizzas.pizza.sauce,
+  price: state.pizzas.pizza.total,
   ingredients: state.pizzas.pizza
 })
 
@@ -83,4 +88,5 @@ export default connect(mapStateToProps, {
   loadAllSauces, 
   loadAllToppings, 
   createPizzaBase, 
+  updatePrice,
   createPizzaSauce })(MainContainer)
