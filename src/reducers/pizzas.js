@@ -1,18 +1,25 @@
-import { PIZZA_CREATOR } from "../actions/pizzaAction";
+import { NEW_BASE, NEW_SAUCE } from "../actions/pizzaAction";
 
 const initialState = {
   pizza: {
-    ingredients : []
+    base: {},
+    sauce: {},
+    topping: []
   }
   
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case PIZZA_CREATOR:
-      const stateArray = {...state}
-      stateArray.pizza.ingredients.push(action.ingredient) 
-      return stateArray
+    case NEW_BASE:
+      const stateArrayBase = {...state}
+      stateArrayBase.pizza.base = {...action.base} 
+      return stateArrayBase 
+
+    case NEW_SAUCE:
+      const stateArraySauce = {...state}
+      stateArraySauce.pizza.sauce = {...action.sauce} 
+      return stateArraySauce 
 
     default:
         return state
