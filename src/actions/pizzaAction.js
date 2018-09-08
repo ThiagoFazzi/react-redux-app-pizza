@@ -4,14 +4,87 @@ export const PIZZA_CREATOR = 'PIZZA_CREATOR'
 
 //Actions Creators
 
-const pizzaCreator = pizza => ({
+const pizzaCreator = ingredient => ({
   type: PIZZA_CREATOR,
-    pizza
+  ingredient
 })
 
 //Dispatch Actions
 
 export const createPizza= () => (dispatch, getState) => {
-  if (getState().pizza) return 
-    dispatch(pizzaCreator(pizza))
+  //if (getState().pizzas) return 
+     
+    const ingredient = {
+      base: {
+        id: 2,
+        name: '30cm NY Style',
+        price: 11.49
+      }
+      /*
+      sauce: {
+        id: 2,
+        name: 'Red sauce',
+        price: 1.00
+      },
+      toppings: [
+        {
+          id: 1,
+          name: 'Pineapple',
+          price: 0.50
+        },
+        {
+          id: 3,
+          name: 'Olives (green)',
+          price: 0.50
+        },
+        {
+          id: 6,
+          name: 'Cherry tomatoes',
+          price: 0.50
+        },
+      ],
+      total: '20.00'
+      */
+    }
+    dispatch(pizzaCreator(ingredient))
+}
+
+export const createPizza1= () => (dispatch, getState) => {
+  //if (getState().pizzas) return 
+     
+    const ingredient = {
+      /*
+      base: {
+        id: 2,
+        name: '30cm NY Style',
+        price: 11.49
+      }
+      */
+      sauce: {
+        id: 2,
+        name: 'Red sauce',
+        price: 1.00
+      }
+      /*
+      toppings: [
+        {
+          id: 1,
+          name: 'Pineapple',
+          price: 0.50
+        },
+        {
+          id: 3,
+          name: 'Olives (green)',
+          price: 0.50
+        },
+        {
+          id: 6,
+          name: 'Cherry tomatoes',
+          price: 0.50
+        },
+      ],
+      total: '20.00'
+    */
+   }
+    dispatch(pizzaCreator(ingredient))
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { loadAllBases, loadAllSauces, loadAllToppings } from '../actions/ingredientsAction'
+import { createPizza, createPizza1 } from '../actions/pizzaAction'
 //import EventsList from '../components/EventsList'
 //import CreateEventFormContainer from './CreateEventFormContainer';
 
@@ -9,6 +10,7 @@ class MainContainer extends React.PureComponent {
     this.props.loadAllBases()
     this.props.loadAllSauces()
     this.props.loadAllToppings()
+    //this.props.createPizza()
   }
 
   render() {
@@ -41,6 +43,8 @@ class MainContainer extends React.PureComponent {
             </li>
           )}
         </ul>
+        <button onClick={this.props.createPizza}>Create Pizza</button>
+        <button onClick={this.props.createPizza1}>Create Pizza1</button>
       </div>
     )
   }
@@ -52,4 +56,4 @@ const mapStateToProps = state => ({
   toppings: state.toppings
 })
 
-export default connect(mapStateToProps, { loadAllBases, loadAllSauces, loadAllToppings })(MainContainer)
+export default connect(mapStateToProps, { loadAllBases, loadAllSauces, loadAllToppings, createPizza, createPizza1 })(MainContainer)
