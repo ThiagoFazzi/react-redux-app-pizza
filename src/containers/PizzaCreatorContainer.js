@@ -10,8 +10,9 @@ class PizzaCreatorContainer extends React.PureComponent {
   
     render() {
       
-      if(!this.props.ingredients.base === undefined) return <p>Loading...</p> 
-      if(!this.props.ingredients.sauce === undefined) return <p>Loading...</p>  
+      if(!this.props.bases) return <p>Loading...</p>
+      if(!this.props.sauces) return <p>Loading...</p>
+      if(!this.props.toppings) return <p>Loading...</p> 
       
       console.log(this.props.ingredients)
       return (

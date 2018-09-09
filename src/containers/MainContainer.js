@@ -1,10 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { loadAllBases, loadAllSauces, loadAllToppings } from '../actions/ingredientsAction'
-import { createPizzaBase, createPizzaSauce, updatePrice } from '../actions/pizzaAction'
+import { createPizzaBase, createPizzaSauce, updatePrice, createPizzaAddTopping, createPizzaRemoveTopping } from '../actions/pizzaAction'
 import PizzaCreatorContainer from './PizzaCreatorContainer'
 
 class MainContainer extends React.PureComponent {
+  state = {checkboxSelection: 0}
+  
   componentDidMount() {
     this.props.loadAllBases()
     this.props.loadAllSauces()
@@ -21,12 +23,26 @@ class MainContainer extends React.PureComponent {
     this.calcTotalPrice(this.props.pizza)
   }
 
+  onChangeTopping = (e, topping) => {
+    if(e.target.checked){
+      this.props.createPizzaAddTopping(topping)
+    } else {
+      this.props.createPizzaRemoveTopping(topping)
+    }
+    
+    //this.calcTotalPrice(this.props.pizza)
+  }
+
   calcTotalPrice = (pizza) => {
       if(!pizza.base.price) pizza.base.price = 0
       if(!pizza.sauce.price) pizza.sauce.price = 0
 
       const pizzaPrice = (pizza.base.price + pizza.sauce.price)
       this.props.updatePrice(pizzaPrice)
+  }
+  
+  onLimitCheckBox = (event) => {
+  
   }
 
 
@@ -39,7 +55,6 @@ class MainContainer extends React.PureComponent {
     if(!this.props.sauce === undefined) return <p>Loading...</p>  
     return (
       <div>
-        <h1>Main Container</h1>
         <h2>Bases</h2>
         <ul>
           {this.props.bases.map(base => 
@@ -59,7 +74,7 @@ class MainContainer extends React.PureComponent {
         <h2>Toppings</h2>
         <ul>
           {this.props.toppings.map(topping => 
-            <li key={topping.id}><input type="checkbox"/>
+            <li key={topping.id}><input type="checkbox" onChange={(e) => this.onChangeTopping(e, topping)}/>
               {topping.name} - {topping.price}
             </li>
           )}
@@ -90,4 +105,6 @@ export default connect(mapStateToProps, {
   loadAllToppings, 
   createPizzaBase, 
   updatePrice,
+  createPizzaAddTopping,
+  createPizzaRemoveTopping,
   createPizzaSauce })(MainContainer)
