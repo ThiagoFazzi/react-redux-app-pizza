@@ -4,6 +4,8 @@ import { updatePrice } from '../actions/pizzaAction'
 import ListBasesContainer from './ListBasesContainer'
 import ListSaucesContainer from './ListSaucesContainer'
 import ListToppingsContainer from './ListToppingsContainer';
+import OrderDetailsContainer from './OrderDetailsContainer';
+import OrdersDetails from '../components/OrdersDetails';
 
 class MainContainer extends React.PureComponent {
   
@@ -18,15 +20,15 @@ class MainContainer extends React.PureComponent {
     if(!this.props.pizza) return <p>Loading...</p>
     return (
       <div>
+        <h1>{this.props.pizza.total}</h1>
+        <h1>{this.props.pizza.base.name}</h1>
+
+        <OrdersDetails values={this.props.pizza}></OrdersDetails>
         <ListBasesContainer></ListBasesContainer>
         <ListSaucesContainer></ListSaucesContainer>
         <ListToppingsContainer></ListToppingsContainer>
 
-        {console.log(this.props.pizza.base.name)}
-        {console.log(this.props.pizza.sauce.name)}
-        <p>{this.props.pizza.base.name}</p>
-        <p>{this.props.pizza.sauce.name}</p>
-        <h1>{this.props.price}</h1>
+        <OrderDetailsContainer></OrderDetailsContainer>
 
       </div>
     )
@@ -35,7 +37,17 @@ class MainContainer extends React.PureComponent {
 
 const mapStateToProps = state => ({
   pizza: state.pizzas.pizza,
-  price: state.pizzas.pizza.total,
 })
 
 export default connect(mapStateToProps, { updatePrice })(MainContainer)
+
+
+
+/**
+ * {console.log(this.props.pizza.base.name)}
+ {console.log(this.props.pizza.sauce.name)}
+ <p>{this.props.pizza.base.name}</p>
+ <p>{this.props.pizza.sauce.name}</p>
+ <h1>{this.props.price}</h1>
+ * 
+ */        

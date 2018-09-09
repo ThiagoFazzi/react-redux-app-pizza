@@ -4,7 +4,7 @@ const initialState = {
   pizza: {
     base: {},
     sauce: {},
-    topping: {},
+    topping: [],
     total: 0.00
   }
   
@@ -24,19 +24,12 @@ export default (state = initialState, action) => {
     
     case ADD_TOPPING:
       const stateArrayAddTopping = {...state}
-      console.log(action.topping)
-      //stateArrayAddTopping.pizza.topping.push(action.topping) 
-      stateArrayAddTopping.pizza.topping += action.topping 
+      stateArrayAddTopping.pizza.topping.push(action.topping) 
       return stateArrayAddTopping
 
-      case REMOVE_TOPPING:
+    case REMOVE_TOPPING:
       const stateArrayRemoveTopping = {...state}
-      console.log(stateArrayRemoveTopping.pizza.topping)
-      //stateArrayRemoveTopping.pizza.topping.map(top => console.log(top.id))
-      stateArrayRemoveTopping.pizza.topping.filter(top =>  top !== action.topping) 
-      //stateArrayRemoveTopping.pizza.topping.filter(top =>  top.id !== action.topping.id) 
-      //console.log(stateArrayRemoveTopping)
-      //stateArrayRemoveTopping.pizza.topping.filter(top =.> action.topping.id === top.id) 
+      stateArrayRemoveTopping.pizza.topping = stateArrayRemoveTopping.pizza.topping.filter((value) => value.id !== action.topping.id)
       return stateArrayRemoveTopping 
 
     case TOTAL_PRICE:

@@ -26,7 +26,7 @@ const removeTopping = topping => ({
   topping
 })
 
-const updateTotalPrice = total => ({
+const updatePizzaPrice = total => ({
   type: TOTAL_PRICE,
   total
 })
@@ -42,9 +42,16 @@ export const createPizzaRemoveTopping = (topping) => dispatch => {
   console.log('dispatch remove', topping)
   dispatch(removeTopping(topping))
 }
-export const updatePrice = (total) => (dispatch) => {
-  console.log('dispatch',total)
-  dispatch(updateTotalPrice(total))
+export const updatePrice = (pizza) => (dispatch) => {
+  
+  if(!pizza.base.price) {
+    pizza.base.price = 0
+  }
+   if(!pizza.sauce.price){
+    pizza.sauce.price = 0
+  } 
+  const total = pizza.base.price + pizza.sauce.price
+    dispatch(updatePizzaPrice(total))
 }
 
 export const createPizzaBase = (base) => (dispatch) => {

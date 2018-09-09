@@ -1,8 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { loadAllSauces } from '../actions/ingredientsAction'
-import { createPizzaSauce } from '../actions/pizzaAction'
-
+import { createPizzaSauce, updatePrice } from '../actions/pizzaAction'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl'
+import FormLabel from '@material-ui/core/FormLabel'
 
 class ListSaucesContainer extends React.PureComponent {
  
@@ -12,7 +16,16 @@ class ListSaucesContainer extends React.PureComponent {
 
   onChangeSauce = (sauce) => {
     this.props.createPizzaSauce(sauce)
+    this.props.updatePrice(this.props.pizzaOrder)
   }
+
+  state = {
+    value: ''
+  };
+
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+  };
 
   render() {
 
@@ -20,14 +33,24 @@ class ListSaucesContainer extends React.PureComponent {
     if(!this.props.sauce === undefined) return <p>Loading...</p>  
     return (
         <div>
-            <h2>Choose one Sauce</h2>
-            <ul>
-                {this.props.sauces.map(sauce => 
-                    <li key={sauce.id}><input type="radio" name="sauce" onChange={() => this.onChangeSauce(sauce)} />
-                    {sauce.name} - {sauce.price}
-                    </li>
-                )}
-            </ul>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Choose one Sauce</FormLabel>
+            <RadioGroup
+              aria-label="Sauce"
+              name="sauce"
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
+            {this.props.sauces.map(sauce =>
+              <FormControlLabel 
+                key={sauce.id}
+                value={sauce.name} 
+                control={<Radio onClick={() => this.onChangeSauce(sauce)}/>} 
+                label={`${sauce.name} - € ${sauce.price}`} />
+                
+            )}
+            </RadioGroup>
+          </FormControl>
         </div>
     )
   }
@@ -36,6 +59,7 @@ class ListSaucesContainer extends React.PureComponent {
 const mapStateToProps = state => ({
     sauces: state.sauces,
     sauce: state.pizzas.pizza.sauce,
+    pizzaOrder: state.pizzas.pizza
 })
 
-export default connect(mapStateToProps, { loadAllSauces, createPizzaSauce })(ListSaucesContainer)
+export default connect(mapStateToProps, { loadAllSauces, createPizzaSauce, updatePrice })(ListSaucesContainer)

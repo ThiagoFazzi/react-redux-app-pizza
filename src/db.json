@@ -3,34 +3,40 @@
         {
             "id": 1,
             "name": "25cm NY Style",
-            "price": 8.99
+            "price": 8.99,
+            "image": "http://www.pizzapie24x7.com/17chz1_small.jpg"
         },
         {
             "id": 2,
             "name": "30cm NY Style",
-            "price": 11.49
+            "price": 11.49,
+            "image": "http://www.pizzapie24x7.com/17chz1_small.jpg"
         },
         {
             "id": 3,
             "name": "35cm NY Style",
-            "price": 13.49
+            "price": 13.49,
+            "image": "http://www.pizzapie24x7.com/17chz1_small.jpg"
         }   
     ],
     "sauces": [
         {
             "id": 1,
             "name": "White sauce",
-            "price": 1.00
+            "price": 1.00,
+            "image": "http://www.receitax.com/wp-content/uploads/2016/04/molho-branco.jpg"
         },
         {
             "id": 2,
             "name": "Red sauce",
-            "price": 1.00
+            "price": 1.00,
+            "image": "http://www.receitax.com/wp-content/uploads/2016/04/molho-branco.jpg"
         },
         {
             "id": 3,
             "name": "Mix it up",
-            "price": 1.50
+            "price": 1.50,
+            "image": "http://www.receitax.com/wp-content/uploads/2016/04/molho-branco.jpg"
         }  
     ],
     "toppings": [
