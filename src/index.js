@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Routers} from 'react-router-dom'
 
 ReactDOM.render(
-    <Routers>
+    <Routers basename={'/react-redux-app-pizza'}>
         <App />
     </Routers>
     , document.getElementById('root'));
