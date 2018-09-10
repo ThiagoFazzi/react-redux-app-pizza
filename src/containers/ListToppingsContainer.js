@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { loadAllToppings } from '../actions/ingredientsAction'
-import { createPizzaAddTopping, createPizzaRemoveTopping } from '../actions/pizzaAction'
+import { createPizzaAddTopping, createPizzaRemoveTopping, updatePrice } from '../actions/pizzaAction'
 
 class ListToppingsContainer extends React.PureComponent {
   state = {checkboxSelection: 0}
@@ -13,8 +13,10 @@ class ListToppingsContainer extends React.PureComponent {
   onChangeTopping = (e, topping) => {
     if(e.target.checked){
       this.props.createPizzaAddTopping(topping)
+      this.props.updatePrice(this.props.pizzaOrder)
     } else {
       this.props.createPizzaRemoveTopping(topping)
+      this.props.updatePrice(this.props.pizzaOrder)
     }
   }
 
@@ -43,9 +45,11 @@ class ListToppingsContainer extends React.PureComponent {
 
 const mapStateToProps = state => ({
   toppings: state.toppings,
+  pizzaOrder: state.pizzas.pizza
 })
 
 export default connect(mapStateToProps, {   
   loadAllToppings,  
   createPizzaAddTopping,
-  createPizzaRemoveTopping })(ListToppingsContainer)
+  createPizzaRemoveTopping,
+  updatePrice })(ListToppingsContainer)

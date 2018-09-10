@@ -44,13 +44,33 @@ export const createPizzaRemoveTopping = (topping) => dispatch => {
 }
 export const updatePrice = (pizza) => (dispatch) => {
   
+  let toppingTotalPrice = 0
+
   if(!pizza.base.price) {
     pizza.base.price = 0
   }
    if(!pizza.sauce.price){
     pizza.sauce.price = 0
-  } 
-  const total = pizza.base.price + pizza.sauce.price
+  }
+  
+  console.log(pizza.topping)
+  //if(pizza.toppings.lenght < 0){
+  //  toppingTotalPrice = 0
+  //} else {
+    const mapToppings = pizza.topping.map(top => top.price) 
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    console.log(mapToppings.reduce(reducer));
+    toppingTotalPrice = mapToppings.reduce(reducer)
+
+    //for(let i=0; i < pizza.toppings.length; i++){
+    //  console.log(pizza.toppings.price[i])
+    //  toppingTotalPrice += pizza.toppings.price[i]
+    
+  //}
+
+  //console.log(toppingTotalPrice)
+
+  const total = pizza.base.price + pizza.sauce.price + toppingTotalPrice
     dispatch(updatePizzaPrice(total))
 }
 
