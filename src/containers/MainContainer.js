@@ -6,6 +6,7 @@ import ListSaucesContainer from './ListSaucesContainer'
 import ListToppingsContainer from './ListToppingsContainer';
 import OrderDetailsContainer from './OrderDetailsContainer';
 import OrdersDetails from '../components/OrdersDetails';
+import DeliveryContainer from './DeliveryContainer';
 
 class MainContainer extends React.PureComponent {
   
@@ -29,6 +30,7 @@ class MainContainer extends React.PureComponent {
         <ListToppingsContainer></ListToppingsContainer>
 
         <OrderDetailsContainer></OrderDetailsContainer>
+        <DeliveryContainer></DeliveryContainer>
 
       </div>
     )

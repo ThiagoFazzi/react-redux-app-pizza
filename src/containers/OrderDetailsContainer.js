@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { updatePrice } from '../actions/pizzaAction'
+import {  } from '../actions/pizzaAction'
 
 
 
@@ -31,4 +31,4 @@ const mapStateToProps = state => ({
   pizzaOrder: state.pizzas.pizza
 })
 
-export default connect(mapStateToProps, { updatePrice })(OrderDetailsContainer)
+export default connect(mapStateToProps, { })(OrderDetailsContainer)
