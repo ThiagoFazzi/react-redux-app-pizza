@@ -56,21 +56,21 @@ export const updatePrice = (pizza) => (dispatch) => {
     toppingTotalPrice = mapToppings.reduce(reducer,0)
 
     const total = pizza.base.price + pizza.sauce.price + toppingTotalPrice
-    dispatch(updatePizzaPrice(total))
+    dispatch(updatePizzaPrice(Number(total).toFixed(2)))
 }
 
 export const updateDeliveryOn = (pizza) => (dispatch) => {
 
   const totalWithDeliveryOn = pizza.total + (pizza.total * 0.1)
 
-  dispatch(updatePizzaPrice(totalWithDeliveryOn))
+  dispatch(updatePizzaPrice(Number(totalWithDeliveryOn).toFixed(2)))
 }
 
 export const updateDeliveryOff = (pizza) => (dispatch) => {
 
   const totalWithDeliveryOff = pizza.total - (pizza.total * 0.1)
 
-  dispatch(updatePizzaPrice(totalWithDeliveryOff))
+  dispatch(updatePizzaPrice(Number(totalWithDeliveryOff).toFixed(2)))
 }
 
 export const createPizzaBase = (base) => (dispatch) => {
