@@ -2,6 +2,7 @@
   "name": "pizza-shop",
   "version": "0.1.0",
   "description": "Pizza creator project",
+  "homepage": "https://ThiagoFazzi.github.io/react-redux-app-pizza",
   "repository": "git@github.com:ThiagoFazzi/react-redux-app-pizza.git",
   "main": "index.js",
   "author": "Thiago Fazzi",

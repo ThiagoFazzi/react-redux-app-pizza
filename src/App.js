@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div>
-          <Route path="/" exact component={MainContainer} />
+          <Route path={`${process.env.PUBLIC_URL}/`} exact component={MainContainer} />
         </div>
       </Provider>
     );
