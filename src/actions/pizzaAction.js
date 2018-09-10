@@ -34,12 +34,10 @@ const updatePizzaPrice = total => ({
 //Dispatch Actions
 
 export const createPizzaAddTopping = (topping) => dispatch => {
-  console.log('dispatch add', topping)
   dispatch(addTopping(topping))
 }
 
 export const createPizzaRemoveTopping = (topping) => dispatch => {
-  console.log('dispatch remove', topping)
   dispatch(removeTopping(topping))
 }
 export const updatePrice = (pizza) => (dispatch) => {
