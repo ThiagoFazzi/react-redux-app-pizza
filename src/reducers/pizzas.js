@@ -24,7 +24,8 @@ export default (state = initialState, action) => {
     
     case ADD_TOPPING:
       const stateArrayAddTopping = {...state}
-      stateArrayAddTopping.pizza.topping.push(action.topping) 
+      //stateArrayAddTopping.pizza.topping.push(action.topping) 
+      stateArrayAddTopping.pizza.topping = stateArrayAddTopping.pizza.topping.concat(action.topping) 
       return stateArrayAddTopping
 
     case REMOVE_TOPPING:
